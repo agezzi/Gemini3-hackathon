@@ -123,7 +123,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ title, content, type, qu
             animationDuration: `${2 + Math.random() * 2}s`
           }}
         />
-              />
+            
       ))}
 
       {/* Burnout Alert Section */}
