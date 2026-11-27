@@ -1,0 +1,308 @@
+{
+  "entities": {
+    "Admin": {
+      "title": "Admin",
+      "description": "Authorized administrator/coach with elevated privileges to view all cohort members and provide feedback.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Administrator email address"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["admin", "coach", "superadmin"],
+          "description": "Administrative role title"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when admin status was provisioned"
+        }
+      },
+      "required": ["email", "role"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Cohort member neural profile, real-time focus status, and productivity telemetry.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Firebase Auth UID matching the document ID"
+        },
+        "email": {
+          "type": "string",
+          "description": "Member email"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of the coachee"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Profile picture URL"
+        },
+        "currentStreak": {
+          "type": "integer",
+          "description": "Current consecutive active days"
+        },
+        "highestStreak": {
+          "type": "integer",
+          "description": "Historical peak streak"
+        },
+        "totalPlansGenerated": {
+          "type": "integer",
+          "description": "Total AI plans created"
+        },
+        "totalFocusMinutes": {
+          "type": "integer",
+          "description": "Total accumulated focus minutes"
+        },
+        "mainGoal": {
+          "type": "string",
+          "description": "Primary sprint or quarterly goal"
+        },
+        "currentStatus": {
+          "type": "string",
+          "enum": ["idle", "in_focus", "plan_ready", "redlining"],
+          "description": "Real-time state for coach CMS monitoring"
+        },
+        "archetype": {
+          "type": "string",
+          "description": "Identified cognitive archetype (e.g., Sprint-Crashing Redliner)"
+        },
+        "emailDigestSettings": {
+          "type": "object",
+          "description": "User preferences and last-sent metadata for daily Gmail focus updates"
+        },
+        "activeUiTheme": {
+          "type": "string",
+          "description": "Active unlockable UI theme identifier"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Account registration timestamp"
+        },
+        "lastActiveAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last ping / interaction timestamp"
+        }
+      },
+      "required": ["id", "email", "currentStreak", "currentStatus"]
+    },
+    "DailyPlan": {
+      "title": "DailyPlan",
+      "description": "AI-adapted daily plan, behavioral diagnosis, and completion tracking.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique plan ID"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner UID"
+        },
+        "date": {
+          "type": "string",
+          "description": "Plan date formatted YYYY-MM-DD"
+        },
+        "adaptedPlan": {
+          "type": "string",
+          "description": "Generated schedule text"
+        },
+        "insights": {
+          "type": "string",
+          "description": "Cognitive diagnostic insights"
+        },
+        "explanation": {
+          "type": "string",
+          "description": "Behavioral rationale"
+        },
+        "completionRate": {
+          "type": "integer",
+          "description": "Percentage of completed plan items (0-100)"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        }
+      },
+      "required": ["id", "userId", "date", "adaptedPlan"]
+    },
+    "CoachFeedback": {
+      "title": "CoachFeedback",
+      "description": "Open and honest feedback message posted by coach/admin to a cohort member.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Feedback message ID"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Target member UID"
+        },
+        "adminId": {
+          "type": "string",
+          "description": "Coach/Admin UID who created the feedback"
+        },
+        "adminEmail": {
+          "type": "string",
+          "description": "Coach email"
+        },
+        "title": {
+          "type": "string",
+          "description": "Feedback subject or highlight"
+        },
+        "message": {
+          "type": "string",
+          "description": "Honest, constructive observation and coaching notes"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["kudos", "warning", "strategy", "checkin"],
+          "description": "Tone and category of the feedback"
+        },
+        "read": {
+          "type": "boolean",
+          "description": "Whether the user acknowledged the feedback"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        }
+      },
+      "required": ["id", "userId", "adminId", "title", "message", "type", "read"]
+    },
+    "ZenScore": {
+      "title": "ZenScore",
+      "description": "Mindful meditation and focus game session score submitted to the shared tournament leaderboard.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique score identifier"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the player"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Player display name"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Avatar photo URL"
+        },
+        "score": {
+          "type": "integer",
+          "description": "Calculated Zen harmony points"
+        },
+        "harmonyRate": {
+          "type": "integer",
+          "description": "Percentage of perfect rhythmic alignments (0-100)"
+        },
+        "longestStreak": {
+          "type": "integer",
+          "description": "Highest unbroken calm resonance chain"
+        },
+        "durationSeconds": {
+          "type": "integer",
+          "description": "Duration of the meditation game session in seconds"
+        },
+        "weekId": {
+          "type": "string",
+          "description": "ISO week key (e.g., 2026-W45) for weekly tournament grouping"
+        },
+        "archetype": {
+          "type": "string",
+          "description": "Primary cognitive phenotype"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Submission timestamp"
+        }
+      },
+      "required": ["id", "userId", "displayName", "score", "weekId", "createdAt"]
+    },
+    "ZenWeeklyWinner": {
+      "title": "ZenWeeklyWinner",
+      "description": "Archived weekly champion awarded badge and high score record.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Award ID formatted as award_YYYY-Wxx"
+        },
+        "weekId": {
+          "type": "string",
+          "description": "ISO week key"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Winning user UID"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Winning user display name"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Winner avatar URL"
+        },
+        "topScore": {
+          "type": "integer",
+          "description": "Winning zen harmony score"
+        },
+        "badgeId": {
+          "type": "string",
+          "description": "Awarded badge ID"
+        },
+        "badgeTitle": {
+          "type": "string",
+          "description": "Awarded badge title"
+        },
+        "awardedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Award timestamp"
+        }
+      },
+      "required": ["id", "weekId", "userId", "displayName", "topScore", "badgeId"]
+    }
+  },
+  "firestore": {
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "Collection of elevated admin/coach accounts"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Cohort member profile and live telemetry"
+    },
+    "/users/{userId}/plans/{planId}": {
+      "schema": "DailyPlan",
+      "description": "Individual member's daily schedules and completion metrics"
+    },
+    "/users/{userId}/feedback/{feedbackId}": {
+      "schema": "CoachFeedback",
+      "description": "Feedback and coaching guidance from the admin CMS to the member"
+    },
+    "/zen_scores/{scoreId}": {
+      "schema": "ZenScore",
+      "description": "Community and cohort shared meditation game leaderboard entries"
+    },
+    "/zen_winners/{winnerId}": {
+      "schema": "ZenWeeklyWinner",
+      "description": "Weekly crowned meditation tournament champions and badge records"
+    }
+  }
+}

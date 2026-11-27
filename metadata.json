@@ -1,5 +1,8 @@
 {
-  "name": "MindMate: Behavioral Productivity Engine",
+  "name": "NeuralPlan: Behavioral Productivity Engine",
   "description": "An expert-level planning tool that analyzes your historical behavior to generate high-probability, burnout-resistant daily plans using AI reasoning.",
-  "requestFramePermissions": []
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

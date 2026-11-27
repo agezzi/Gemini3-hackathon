@@ -1,0 +1,171 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Hardened Helper Primitives
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        (request.auth.token.email == 'agejirizume@gmail.com' && request.auth.token.email_verified == true)
+      );
+    }
+
+    function isValidUserProfile(data, expectedUid) {
+      return data.id is string && data.id == expectedUid &&
+        data.email is string && data.email.size() <= 128 &&
+        data.displayName is string && data.displayName.size() <= 128 &&
+        (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 500)) &&
+        (!('currentStreak' in data) || (data.currentStreak is int && data.currentStreak >= 0)) &&
+        (!('highestStreak' in data) || (data.highestStreak is int && data.highestStreak >= 0)) &&
+        (!('totalPlansGenerated' in data) || (data.totalPlansGenerated is int && data.totalPlansGenerated >= 0)) &&
+        (!('totalFocusMinutes' in data) || (data.totalFocusMinutes is int && data.totalFocusMinutes >= 0)) &&
+        (!('mainGoal' in data) || data.mainGoal == null || (data.mainGoal is string && data.mainGoal.size() <= 500)) &&
+        (!('currentStatus' in data) || data.currentStatus in ['idle', 'in_focus', 'plan_ready', 'redlining']) &&
+        (!('hasCompletedOnboarding' in data) || data.hasCompletedOnboarding is bool) &&
+        (!('neuralProfile' in data) || data.neuralProfile == null || data.neuralProfile is map) &&
+        (!('archetype' in data) || data.archetype == null || (data.archetype is string && data.archetype.size() <= 128));
+    }
+
+    function isValidDailyPlan(data, expectedUid) {
+      return data.id is string && isValidId(data.id) &&
+        data.userId is string && data.userId == expectedUid &&
+        data.date is string && data.date.size() <= 32 &&
+        data.adaptedPlan is string && data.adaptedPlan.size() <= 15000 &&
+        (!('insights' in data) || (data.insights is string && data.insights.size() <= 5000)) &&
+        (!('explanation' in data) || (data.explanation is string && data.explanation.size() <= 5000)) &&
+        (!('completionRate' in data) || (data.completionRate is int && data.completionRate >= 0 && data.completionRate <= 100));
+    }
+
+    function isValidFeedback(data, targetUserId) {
+      return data.id is string && isValidId(data.id) &&
+        data.userId is string && data.userId == targetUserId &&
+        data.adminId is string && data.adminId == request.auth.uid &&
+        data.title is string && data.title.size() <= 200 &&
+        data.message is string && data.message.size() <= 3000 &&
+        data.type in ['kudos', 'warning', 'strategy', 'checkin'] &&
+        data.read is bool;
+    }
+
+    function isValidZenScore(data) {
+      return data.id is string && isValidId(data.id) &&
+        data.userId is string && isValidId(data.userId) &&
+        data.displayName is string && data.displayName.size() > 0 && data.displayName.size() <= 100 &&
+        (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 500)) &&
+        data.score is int && data.score >= 0 && data.score <= 10000000 &&
+        (!('harmonyRate' in data) || (data.harmonyRate is int && data.harmonyRate >= 0 && data.harmonyRate <= 100)) &&
+        (!('longestStreak' in data) || (data.longestStreak is int && data.longestStreak >= 0 && data.longestStreak <= 1000)) &&
+        (!('durationSeconds' in data) || (data.durationSeconds is int && data.durationSeconds >= 0 && data.durationSeconds <= 7200)) &&
+        data.weekId is string && data.weekId.size() > 0 && data.weekId.size() <= 32 &&
+        (!('archetype' in data) || (data.archetype is string && data.archetype.size() <= 100)) &&
+        data.createdAt is string && data.createdAt.size() <= 64;
+    }
+
+    function isValidZenWinner(data) {
+      return data.id is string && isValidId(data.id) &&
+        data.weekId is string && data.weekId.size() > 0 && data.weekId.size() <= 32 &&
+        data.userId is string && isValidId(data.userId) &&
+        data.displayName is string && data.displayName.size() > 0 && data.displayName.size() <= 100 &&
+        (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 500)) &&
+        data.topScore is int && data.topScore >= 0 &&
+        data.badgeId is string && data.badgeId.size() <= 64 &&
+        (!('badgeTitle' in data) || (data.badgeTitle is string && data.badgeTitle.size() <= 100)) &&
+        data.awardedAt is string && data.awardedAt.size() <= 64;
+    }
+
+    // Admins Collection
+    match /admins/{adminId} {
+      allow read: if isAdmin();
+      allow write: if isAdmin() && isValidId(adminId);
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      allow read: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      
+      allow create: if isValidId(userId) && isOwner(userId) && 
+        isValidUserProfile(incoming(), userId);
+      
+      allow update: if isValidId(userId) && (
+        (isOwner(userId) && isValidUserProfile(incoming(), userId) && 
+         incoming().id == existing().id && 
+         incoming().email == existing().email) ||
+        isAdmin()
+      );
+
+      allow delete: if isAdmin();
+
+      // Subcollection: Daily Plans
+      match /plans/{planId} {
+        allow read: if isValidId(userId) && isValidId(planId) && (isOwner(userId) || isAdmin());
+        
+        allow create: if isValidId(userId) && isValidId(planId) && isOwner(userId) &&
+          isValidDailyPlan(incoming(), userId);
+        
+        allow update: if isValidId(userId) && isValidId(planId) && (
+          (isOwner(userId) && isValidDailyPlan(incoming(), userId) && incoming().userId == existing().userId) ||
+          isAdmin()
+        );
+
+        allow delete: if isValidId(userId) && isValidId(planId) && (isOwner(userId) || isAdmin());
+      }
+
+      // Subcollection: Coach Feedback
+      match /feedback/{feedbackId} {
+        allow read: if isValidId(userId) && isValidId(feedbackId) && (isOwner(userId) || isAdmin());
+        
+        allow create: if isValidId(userId) && isValidId(feedbackId) && isAdmin() &&
+          isValidFeedback(incoming(), userId);
+        
+        allow update: if isValidId(userId) && isValidId(feedbackId) && (
+          isAdmin() ||
+          (isOwner(userId) && incoming().diff(existing()).affectedKeys().hasOnly(['read']) && incoming().read is bool)
+        );
+
+        allow delete: if isValidId(userId) && isValidId(feedbackId) && isAdmin();
+      }
+    }
+
+    // Zen Leaderboard Collection
+    match /zen_scores/{scoreId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(scoreId) &&
+        incoming().userId == request.auth.uid &&
+        isValidZenScore(incoming());
+      allow update: if false; // immutable score logs
+      allow delete: if isAdmin() || (isSignedIn() && existing().userId == request.auth.uid);
+    }
+
+    // Zen Weekly Winners Collection
+    match /zen_winners/{winnerId} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn() && isValidId(winnerId) &&
+        isValidZenWinner(incoming());
+      allow delete: if isAdmin();
+    }
+  }
+}

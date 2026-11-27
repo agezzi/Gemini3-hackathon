@@ -1,0 +1,907 @@
+# MASTER DEVELOPMENT PROMPT: NEURALPLAN XR
+## Interactive ADHD Attention Assessment Simulation — Investor Demonstration Prototype
+
+### 1. YOUR ROLE
+
+You are a senior full-stack software engineer, immersive experience developer, UI/UX designer, 3D interaction specialist and neuroscience-informed product designer.
+
+You are working on an existing neurodivergent productivity web application called **NeuralPlan**.
+
+Your assignment is to introduce a new premium feature called **NeuralPlan XR**.
+
+This feature is an interactive, browser-based simulation demonstrating a proposed immersive attention-assessment experience designed around cognitive processes associated with ADHD.
+
+IMPORTANT: This is an investor-facing demonstration prototype. You are NOT being asked to build the final production XR application, an actual clinical diagnostic instrument, or a complete WebXR system.
+
+The objective is to create an exceptionally polished, convincing and playable demonstration of what NeuralPlan XR could eventually become.
+
+The experience must work inside the existing web application using an ordinary desktop browser. Users must not need a VR headset, specialist eye-tracking equipment or additional hardware.
+
+---
+
+# 2. CRITICAL INSTRUCTIONS: PROTECT THE EXISTING APPLICATION
+
+Before writing or modifying any code:
+
+1. Inspect the existing project structure.
+2. Identify the current frontend framework, component architecture, routing system, styling conventions and design system.
+3. Identify the existing dashboard, sidebar/navigation, authentication system and shared components.
+4. Understand how the application currently handles user data and feature integration.
+5. Identify reusable components and existing dependencies.
+
+Do not rebuild the existing application.
+
+Do not replace the current dashboard.
+
+Do not modify unrelated functionality.
+
+Do not remove, rename or overwrite existing components unless absolutely necessary and explicitly justified.
+
+Do not introduce an entirely new application structure.
+
+Implement NeuralPlan XR as a self-contained feature that integrates naturally with the existing application.
+
+Preserve the existing branding, typography, navigation conventions and overall visual identity wherever possible.
+
+If a new dependency is necessary, explain why before introducing it.
+
+Where the existing application already has suitable dependencies, reuse them.
+
+If the existing application has a working design system, follow it rather than inventing a competing one.
+
+The feature must be modular, maintainable and easy to expand into a real XR product in the future.
+
+---
+
+# 3. PRODUCT VISION
+
+NeuralPlan XR is an experimental cognitive assessment and training concept.
+
+It explores how an immersive environment could be used to examine:
+
+- Sustained attention.
+- Selective attention.
+- Visual distractibility.
+- Attentional recovery.
+- Response consistency.
+- Vigilance over time.
+- Behavioural responses to competing stimuli.
+
+The central concept is simple:
+
+A participant is instructed to maintain visual attention on a pulsating warm-coloured light.
+
+After an initial baseline period, additional visual stimuli are introduced.
+
+The participant attempts to maintain attention on the original light while competing stimuli move around the environment.
+
+The application simulates gaze tracking through mouse movement.
+
+It records the participant's interactions, calculates performance metrics and generates an illustrative cognitive performance report.
+
+The experience should feel like a sophisticated neuroscience research experiment rather than a conventional productivity game.
+
+The interface should communicate that this is an emerging technology concept with potential applications in cognitive assessment, research and personalised productivity.
+
+---
+
+# 4. FEATURE ACCESS AND NAVIGATION
+
+Create a dedicated NeuralPlan XR section.
+
+Users should be able to access it through:
+
+- A prominent NeuralPlan XR feature card on the existing dashboard.
+- A dedicated item in the application's existing sidebar or primary navigation.
+- A dedicated NeuralPlan XR landing page.
+
+Do not create duplicate navigation systems.
+
+The landing page should contain:
+
+**Header:**
+NeuralPlan XR
+
+**Subtitle:**
+Explore your attention. Understand your cognitive patterns.
+
+**Description:**
+An experimental immersive experience exploring sustained attention, visual distractibility and attentional control through interactive cognitive simulations.
+
+Include three feature highlights:
+
+1. Immersive Attention Simulation.
+2. Real-Time Gaze Interaction.
+3. Cognitive Performance Insights.
+
+Include a prominent CTA:
+
+"Start XR Experience"
+
+Include a secondary CTA:
+
+"Explore Demonstration"
+
+The page should also contain a short explanation that the simulation is experimental and does not diagnose ADHD.
+
+---
+
+# 5. VISUAL AND CREATIVE DIRECTION
+
+The visual experience is extremely important.
+
+This is intended to be demonstrated to venture capital investors, technology partners and potential strategic collaborators.
+
+It must look like a premium neuroscience technology product.
+
+Use a combination of:
+
+- Minimalist scientific visualisation.
+- Immersive three-dimensional environments.
+- Premium futuristic interface design.
+- Sophisticated data visualisation.
+- Subtle cinematic lighting and motion.
+
+### Colour palette
+
+Primary colours:
+
+- Deep black.
+- Charcoal.
+- Dark graphite.
+- Warm amber.
+- Burnt orange.
+- Soft gold.
+
+Secondary colours:
+
+- Cyan.
+- Electric blue.
+- Muted violet.
+- Soft white.
+
+The primary target stimulus must use a warm amber/orange colour.
+
+The distracting stimuli should use contrasting colours, especially cyan and blue.
+
+Use subtle gradients, ambient illumination, soft glows and restrained particle effects.
+
+Avoid excessive neon effects, clutter, cartoon-like graphics and generic gaming aesthetics.
+
+### Typography
+
+Use clean, modern typography.
+
+The experience should feel premium, clinical, futuristic and approachable.
+
+### Animation
+
+Use smooth transitions, controlled motion, subtle depth and polished visual feedback.
+
+Avoid excessive animation that could create discomfort or unnecessary sensory overload.
+
+Provide a reduced-motion option.
+
+---
+
+# 6. THE XR SIMULATION EXPERIENCE
+
+Build a playable simulation with five sequential stages.
+
+The simulation should run inside a dedicated immersive-looking interface.
+
+Use a central visual environment that occupies most of the screen.
+
+A small amount of contextual interface information may surround the environment, including:
+
+- Current stage.
+- Remaining time.
+- Session progress.
+- Instructional prompts.
+- Gaze tracking indicator.
+- Pause and exit controls.
+
+Do not allow the surrounding interface to distract from the primary experiment.
+
+Use HTML Canvas, CSS animations or an existing compatible 3D library.
+
+If Three.js is already installed or can be introduced without disrupting the application, it may be used to create a genuine interactive 3D environment.
+
+Do not require actual WebXR hardware.
+
+---
+
+# 7. STAGE ONE: BASELINE ATTENTION
+
+Duration: Approximately 45–60 seconds.
+
+Environment:
+
+A dark, minimalist virtual environment.
+
+Place a single glowing amber/orange orb in the centre of the user's screen.
+
+The orb should:
+
+- Have a soft outer glow.
+- Pulsate gently.
+- Expand and contract smoothly.
+- Maintain a consistent position.
+- Have a visually pleasing organic appearance.
+
+The background should be nearly black, with very subtle atmospheric depth.
+
+Display the following instructions:
+
+"Welcome to the NeuralPlan XR Focus Experience."
+
+"Your task is to maintain your attention on the glowing light in the centre of your screen."
+
+"Try to keep your gaze on the light for the duration of this stage."
+
+Add a clear START button.
+
+### Interaction
+
+Use the mouse cursor as a simulated gaze indicator.
+
+The application should continuously calculate the distance between the cursor and the centre of the primary orb.
+
+When the cursor is within the defined target radius, register simulated gaze as being on target.
+
+When it moves outside the target radius, register a gaze deviation.
+
+Track:
+
+- Total time on target.
+- Total time off target.
+- Number of gaze deviations.
+- Duration of individual deviations.
+- Average time to return to the target.
+
+Show a subtle visual indicator that the simulated gaze tracking is active.
+
+Do not display excessive numbers during the experience itself.
+
+Collect the underlying data for the final report.
+
+---
+
+# 8. STAGE TWO: VISUAL DISTRACTION
+
+Duration: Approximately 60–90 seconds.
+
+Retain the original pulsating amber orb in the centre.
+
+Introduce a second glowing particle.
+
+The secondary particle should be cyan or electric blue.
+
+Initially, it should move slowly around the central orb.
+
+Use an orbital trajectory with a gradually changing radius.
+
+After an initial period, make the movement less predictable.
+
+Implement two movement behaviours:
+
+**A. Orbital movement**
+
+The particle follows a smooth circular or elliptical trajectory.
+
+**B. Controlled random movement**
+
+The particle follows a continuously changing but smooth trajectory.
+
+It should feel unpredictable without appearing chaotic or erratic.
+
+Allow the user to experience the distraction without changing the primary task.
+
+The instruction should read:
+
+"A new visual stimulus has entered your environment."
+
+"Continue focusing on the original amber light."
+
+"Try not to allow the moving blue light to capture your attention."
+
+### Measurement
+
+Track:
+
+- Number of gaze shifts towards the secondary particle.
+- Total time spent looking at the secondary particle.
+- Time taken for the first distractor capture.
+- Average duration of distraction.
+- Time taken to return to the primary target.
+- Number of successful returns to the target.
+
+A distractor capture should only be recorded when the cursor enters the secondary particle's defined interaction radius.
+
+Prevent repeated frame-by-frame counting of the same continuous distraction event.
+
+A new event should only be recorded after the previous event ends and a new capture occurs.
+
+---
+
+# 9. STAGE THREE: COMPETING STIMULI
+
+Duration: Approximately 60–90 seconds.
+
+Increase the cognitive demands.
+
+Introduce additional visual distractions progressively.
+
+For example:
+
+- A third glowing particle appears.
+- A particle briefly crosses the central field of vision.
+- A secondary light changes its movement speed.
+- Some particles change brightness.
+- Additional visual stimuli appear briefly and disappear.
+
+The original amber orb must remain the primary target.
+
+The participant must continue trying to maintain attention on it.
+
+Do not make all the distractions appear simultaneously.
+
+Use controlled progression.
+
+### Measurement
+
+Track:
+
+- Total gaze deviations.
+- Distractor capture frequency.
+- Time spent looking away from the target.
+- Average refocusing latency.
+- Changes in target fixation duration.
+- Performance changes compared with the baseline stage.
+
+---
+
+# 10. STAGE FOUR: SUSTAINED ATTENTION AND RESPONSE CONTROL
+
+Duration: Approximately 60–90 seconds.
+
+This stage introduces an additional cognitive task inspired by Continuous Performance Test methodologies.
+
+The primary amber orb continues pulsating.
+
+Occasionally, it performs a distinctive double pulse.
+
+The participant receives the following instruction:
+
+"Continue watching the amber light."
+
+"Whenever you notice it performing a double pulse, press the SPACEBAR."
+
+"Ignore the other moving lights."
+
+Implement a randomised but controlled sequence of single and double pulses.
+
+The participant must identify the double pulses.
+
+Track:
+
+- Correct responses.
+- Missed target events.
+- Incorrect responses.
+- Reaction time.
+- Average reaction time.
+- Reaction-time variability.
+- Response consistency.
+
+Use the SPACEBAR as the primary input.
+
+Also support a clearly visible on-screen response button.
+
+Ensure the participant cannot accidentally trigger multiple responses for one target event.
+
+This stage should be implemented as a behavioural response simulation, not a validated clinical Continuous Performance Test.
+
+---
+
+# 11. STAGE FIVE: SESSION COMPLETION
+
+After the final stage:
+
+Display an elegant transition screen.
+
+Title:
+
+"Your Focus Experience Is Complete."
+
+Subtitle:
+
+"Your session data has been processed."
+
+Include a button:
+
+"View My Results"
+
+Generate the complete performance report.
+
+---
+
+# 12. SIMULATED GAZE TRACKING ENGINE
+
+This is one of the most important components.
+
+Build a functional simulated gaze-tracking system.
+
+The mouse cursor represents the user's estimated gaze position.
+
+Do not merely animate a fake tracking indicator.
+
+The actual mouse position must influence the performance calculations.
+
+The system must:
+
+1. Read the cursor's position relative to the simulation environment.
+2. Identify whether it falls within the primary target area.
+3. Identify whether it enters a distractor area.
+4. Record timestamped changes in gaze state.
+5. Calculate the duration of each state.
+6. Prevent duplicate event recording.
+7. Maintain separate metrics for every stage.
+8. Aggregate the data into a session-level report.
+
+Use a consistent sampling mechanism.
+
+Use timestamps rather than assuming a particular frame rate.
+
+Handle browser focus loss and tab switching appropriately.
+
+If the browser loses focus, pause the simulation or flag the period as invalid rather than counting it as a gaze deviation.
+
+Provide a small tracking indicator:
+
+"SIMULATED GAZE TRACKING ACTIVE"
+
+Include an optional automated demonstration mode.
+
+In automated demonstration mode, generate realistic-looking synthetic gaze behaviour so investors can see the experience without having to operate the mouse.
+
+Clearly label this as simulated demonstration data.
+
+Never present synthetic data as actual human eye-tracking measurements.
+
+---
+
+# 13. COGNITIVE PERFORMANCE ANALYTICS
+
+At the end of the session, calculate the following metrics.
+
+### A. Target fixation percentage
+
+Percentage of valid session time spent within the primary target area.
+
+Formula:
+
+Time within primary target / Total valid observation time × 100.
+
+### B. Distractor capture count
+
+Number of distinct times the participant's simulated gaze enters a distraction area.
+
+### C. Average distraction duration
+
+Average time spent in a distraction area per distinct distraction event.
+
+### D. Refocusing latency
+
+Time between leaving the primary target and returning to it.
+
+Report the average and, where possible, median.
+
+### E. Sustained attention consistency
+
+Compare performance across the early and later portions of the session.
+
+### F. Response accuracy
+
+Correct target responses divided by total valid target opportunities.
+
+### G. Reaction-time variability
+
+Calculate the standard deviation of valid reaction times.
+
+### H. Stage-by-stage performance
+
+Compare the metrics from each stage to identify how performance changed as cognitive demands increased.
+
+Important:
+
+Do not use arbitrary thresholds to classify participants as ADHD-positive or ADHD-negative.
+
+Do not produce a diagnostic probability.
+
+Do not label a participant as having impaired attention based on a single session.
+
+All scores should be presented as descriptive experimental performance indicators.
+
+---
+
+# 14. RESULTS DASHBOARD
+
+Design a sophisticated results dashboard.
+
+This should be one of the strongest visual elements of the entire prototype.
+
+The dashboard should include:
+
+### Session overview
+
+- Session duration.
+- Completion status.
+- Total valid observation time.
+- Tracking mode used.
+- Date and time.
+
+### Main performance indicators
+
+Display large, attractive metric cards for:
+
+1. Target fixation percentage.
+2. Distractor capture count.
+3. Average refocusing latency.
+4. Response accuracy.
+5. Reaction-time consistency.
+
+### Visual analytics
+
+Implement interactive charts showing:
+
+- Attention over time.
+- Gaze distribution.
+- Distraction frequency across stages.
+- Refocusing time.
+- Performance comparison between stages.
+- Response-time distribution.
+
+Use the existing charting library if available.
+
+Otherwise, introduce a lightweight suitable charting solution.
+
+### Attention timeline
+
+Create a horizontal timeline representing the participant's session.
+
+Use distinct visual segments:
+
+- Amber: Primary target attention.
+- Cyan: Distractor attention.
+- Grey: Outside target and distractor regions.
+- Purple: Invalid or paused periods.
+
+### Cognitive observations
+
+Generate an understandable written summary based on the actual session data.
+
+Example:
+
+"During this session, the participant maintained simulated gaze on the primary target for most of the baseline period. Following the introduction of competing stimuli, several visual attention shifts were recorded. The participant subsequently returned to the original target."
+
+These summaries must be generated from the actual session metrics.
+
+Avoid generic conclusions that are unrelated to the recorded data.
+
+### Recommendations
+
+Provide general productivity suggestions linked to the observed performance.
+
+Examples:
+
+- Consider reducing competing visual stimuli during demanding tasks.
+- Experiment with shorter, structured working intervals.
+- Use visual task prioritisation.
+- Introduce planned breaks.
+- Experiment with environmental adjustments.
+
+Make clear that recommendations are exploratory and not clinical treatment.
+
+Include:
+
+- Download report as PDF, if supported by the existing project.
+- Retake assessment.
+- Return to NeuralPlan dashboard.
+
+---
+
+# 15. INVESTOR DEMONSTRATION MODE
+
+Create a dedicated demonstration mode.
+
+This is essential because NeuralPlan XR will be shown to investors and potential partners.
+
+The investor should be able to see the full concept without having to complete every stage manually.
+
+Investor demonstration mode should:
+
+1. Start the experience automatically when selected.
+2. Introduce a synthetic gaze-tracking cursor.
+3. Demonstrate different attention patterns.
+4. Show how the distraction stimuli behave.
+5. Display the simulated attention analytics updating in real time.
+6. Complete the experience.
+7. Generate a sample performance report.
+8. Clearly identify all generated information as synthetic demonstration data.
+
+Provide three demonstration profiles:
+
+**Profile A: Relatively stable attention**
+
+- High target fixation.
+- Few distractor captures.
+- Relatively quick recovery.
+- Consistent response times.
+
+**Profile B: Variable attention**
+
+- Moderate target fixation.
+- Periodic distraction.
+- Variable refocusing latency.
+- Fluctuating response times.
+
+**Profile C: High distractor engagement**
+
+- More frequent distractor captures.
+- Longer periods away from the target.
+- Variable refocusing.
+- Greater performance variability.
+
+These are illustrative behavioural scenarios, not representations of ADHD diagnoses or clinical subtypes.
+
+The investor must be able to switch between these profiles.
+
+Provide a clearly labelled:
+
+"Investor Demo Mode — Synthetic Data"
+
+indicator throughout this experience.
+
+---
+
+# 16. USER EXPERIENCE AND CONTROLS
+
+Implement the following controls:
+
+- Start.
+- Pause.
+- Resume.
+- Restart.
+- Exit.
+- Skip stage, only where appropriate for demonstration mode.
+- Toggle sound.
+- Toggle reduced motion.
+- Switch between interactive and automated demonstration modes.
+
+Use a progress indicator showing all five stages.
+
+Before starting each stage, display a concise explanation of what the participant should do.
+
+Use short transitions between stages.
+
+Do not overwhelm the participant with excessive instructions.
+
+Make the experience usable on ordinary desktop and laptop screens.
+
+For smaller screens, provide a clear compatibility message and an appropriate simplified presentation.
+
+Do not claim that a desktop or mobile screen reproduces genuine immersive XR.
+
+---
+
+# 17. SOUND DESIGN
+
+Use subtle optional sound effects.
+
+Potential effects:
+
+- Soft ambient background.
+- Gentle sound when the primary light performs a double pulse.
+- Subtle transition sound between stages.
+- Completion sound.
+
+Do not use sudden loud noises.
+
+Do not use sound as an unnecessary distraction.
+
+The sound must be optional and muted by default unless the user explicitly enables it.
+
+---
+
+# 18. TECHNICAL ARCHITECTURE
+
+Keep the feature modular.
+
+Where appropriate, organise it into separate components such as:
+
+- NeuralPlanXRLanding
+- NeuralPlanXRSimulation
+- SimulationEnvironment
+- PrimaryTargetOrb
+- DistractorParticle
+- GazeTrackingEngine
+- AttentionMetrics
+- SimulationStageManager
+- CognitiveResultsDashboard
+- InvestorDemoController
+- PerformanceCharts
+
+Adapt component names and locations to the existing project's architecture.
+
+Use a clear data model for:
+
+- Session information.
+- Stage information.
+- Gaze events.
+- Distraction events.
+- Response events.
+- Calculated performance metrics.
+- Demonstration profiles.
+
+Use session timestamps consistently.
+
+Avoid unnecessary backend modifications.
+
+If persistent storage is required, follow the existing application's data architecture.
+
+If no suitable persistence system exists, use temporary local session storage for the prototype and avoid collecting sensitive personal information.
+
+Do not transmit webcam images or personal biometric information.
+
+Do not implement webcam-based eye tracking in this prototype.
+
+---
+
+# 19. SCIENTIFIC AND ETHICAL DISCLAIMERS
+
+This is a mandatory requirement.
+
+Display a clear disclaimer before the experience:
+
+"NeuralPlan XR is an experimental cognitive simulation designed to explore attention-related behaviours. This experience is not a medical device and does not diagnose ADHD or any other neurodevelopmental condition."
+
+On the results dashboard, display:
+
+"Your results represent performance during this specific simulation. They are not a clinical diagnosis and should not be interpreted as evidence for or against ADHD."
+
+In investor demonstration mode, clearly distinguish synthetic data from actual participant data.
+
+Do not use language such as:
+
+- ADHD confirmed.
+- ADHD probability.
+- You have ADHD.
+- Normal versus abnormal brain.
+- Clinical diagnosis.
+
+Use neutral descriptions such as:
+
+- Observed attention pattern.
+- Simulated gaze behaviour.
+- Target fixation.
+- Distractor engagement.
+- Response consistency.
+- Attentional recovery.
+
+The experience should be respectful and neurodiversity-informed.
+
+---
+
+# 20. PERFORMANCE AND QUALITY ASSURANCE
+
+The experience must:
+
+- Load reliably.
+- Run smoothly in a modern desktop browser.
+- Avoid unnecessary dependencies.
+- Maintain accurate timing.
+- Handle interrupted sessions.
+- Prevent duplicate events.
+- Avoid memory leaks.
+- Clean up event listeners.
+- Work without specialist hardware.
+- Provide useful error messages.
+- Preserve existing application functionality.
+
+Test all five stages.
+
+Test mouse interaction.
+
+Test automated demonstration mode.
+
+Test the performance calculations.
+
+Test stage transitions.
+
+Test report generation.
+
+Test restart and pause behaviour.
+
+Test that synthetic data is correctly labelled.
+
+Test the feature alongside the existing dashboard and navigation.
+
+Do not leave placeholder buttons or nonfunctional interactions.
+
+If a feature cannot be implemented, explain the limitation rather than pretending it works.
+
+---
+
+# 21. IMPLEMENTATION PRIORITIES
+
+Work in the following order.
+
+**Priority 1: Application inspection**
+
+Understand the existing codebase and identify the safest integration points.
+
+**Priority 2: Feature integration**
+
+Create the NeuralPlan XR entry point and dedicated landing page.
+
+**Priority 3: Simulation engine**
+
+Implement the five-stage interactive experience and visual environment.
+
+**Priority 4: Gaze tracking simulation**
+
+Implement cursor-based tracking and timestamped event collection.
+
+**Priority 5: Cognitive analytics**
+
+Implement the performance calculations and visualisations.
+
+**Priority 6: Investor demonstration mode**
+
+Implement synthetic participant profiles and automated walkthrough.
+
+**Priority 7: Results dashboard**
+
+Create the complete report and performance visualisations.
+
+**Priority 8: Quality assurance**
+
+Test the experience, resolve errors and verify that existing application functionality remains intact.
+
+---
+
+# 22. FINAL ACCEPTANCE CRITERIA
+
+The implementation is only complete when:
+
+1. NeuralPlan XR is accessible from the existing application.
+2. The existing application remains functional.
+3. The user can start and complete all five stages.
+4. The primary pulsating light works correctly.
+5. Secondary distractions move dynamically.
+6. Cursor position genuinely influences simulated gaze measurements.
+7. Distinct distraction events are correctly recorded.
+8. Response events are recorded accurately.
+9. Performance metrics are calculated from actual interaction data.
+10. The results dashboard displays meaningful charts and summaries.
+11. Automated investor demonstration mode works.
+12. Three synthetic behavioural profiles are available.
+13. Synthetic data is never presented as real eye-tracking data.
+14. The experience works without a VR headset.
+15. The entire feature feels polished and investor-ready.
+
+### FINAL PRODUCT DIRECTION
+
+The finished feature should communicate the following:
+
+"NeuralPlan XR is exploring a new approach to understanding attention and cognitive performance through immersive, interactive environments."
+
+It should demonstrate how a future XR-enabled system could combine visual stimuli, behavioural interaction, eye tracking and cognitive analytics to create a more engaging understanding of individual attention patterns.
+
+Build the experience with the quality and attention to detail expected of a premium neurotechnology startup preparing to demonstrate its technology to venture capital investors.
+
+Do not stop at a static mockup.
+
+Build a fully playable, interactive browser-based prototype.
+
+Do not build the production XR hardware integration or clinical diagnostic system at this stage.
